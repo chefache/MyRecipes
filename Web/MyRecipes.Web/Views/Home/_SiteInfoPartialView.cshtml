@@ -1,0 +1,26 @@
+﻿@using MyRecipes.Web.ViewModels.Home
+@model IndexViewModel
+
+<div class="text-center table-hover">
+    <h1>Добре дошли в MyRecipes</h1>
+    <br />
+    <div class="col-md-4 offset-4">
+        <h2> Имаме :</h2>
+        <br />
+        <br />
+        <ul class="list-group text-dark">
+            <li class="list-group-item bg-primary">
+                Брой юзъри: @Model.UsersCount
+            </li>
+            <li class="list-group-item bg-primary">
+                Брой рецепти: @Model.RecipesCount
+            </li>
+            <li class="list-group-item bg-primary">
+                Брой категории: @Model.CategoriesCount
+            </li>
+            <li class="list-group-item bg-primary">
+                Брой съставки: @Model.IngredientsCount
+            </li>
+        </ul>
+    </div>
+</div>
