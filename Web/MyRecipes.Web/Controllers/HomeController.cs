@@ -5,26 +5,38 @@
 
     using Microsoft.AspNetCore.Mvc;
     using MyRecipes.Data;
+    using MyRecipes.Data.Common.Repositories;
+    using MyRecipes.Data.Models;
     using MyRecipes.Web.ViewModels;
     using MyRecipes.Web.ViewModels.Home;
 
     public class HomeController : BaseController
     {
-        private readonly ApplicationDbContext dbContext;
+        private readonly IDeletableEntityRepository<ApplicationUser> userRepository;
+        private readonly IDeletableEntityRepository<Recipe> recipeRepository;
+        private readonly IDeletableEntityRepository<Category> categoryRepository;
+        private readonly IDeletableEntityRepository<Ingredient> ingredientRepository;
 
-        public HomeController(ApplicationDbContext dbContext)
+        public HomeController(
+            IDeletableEntityRepository<ApplicationUser> userRepository,
+            IDeletableEntityRepository<Recipe> recipeRepository,
+            IDeletableEntityRepository<Category> categoryRepository,
+            IDeletableEntityRepository<Ingredient> ingredientRepository)
         {
-            this.dbContext = dbContext;
+            this.userRepository = userRepository;
+            this.recipeRepository = recipeRepository;
+            this.categoryRepository = categoryRepository;
+            this.ingredientRepository = ingredientRepository;
         }
 
         public IActionResult Index()
         {
             var homePageView = new IndexViewModel
             {
-                UsersCount = this.dbContext.Users.Count(),
-                RecipesCount = this.dbContext.Recipes.Count(),
-                CategoriesCount = this.dbContext.Categories.Count(),
-                IngredientsCount = this.dbContext.Ingredients.Count(),
+                UsersCount = this.userRepository.All().Count(),
+                RecipesCount = this.recipeRepository.All().Count(),
+                CategoriesCount = this.categoryRepository.All().Count(),
+                IngredientsCount = this.ingredientRepository.All().Count(),
             };
 
             return this.View(homePageView);
