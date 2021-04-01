@@ -10,8 +10,8 @@ using MyRecipes.Data;
 namespace MyRecipes.Data.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    [Migration("20210329171447_AddRecipeAndAllRelatedModels")]
-    partial class AddRecipeAndAllRelatedModels
+    [Migration("20210401060856_InitialCreate")]
+    partial class InitialCreate
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
@@ -266,9 +266,6 @@ namespace MyRecipes.Data.Migrations
 
                     b.Property<string>("Name")
                         .HasColumnType("nvarchar(max)");
-
-                    b.Property<int>("RecipeId")
-                        .HasColumnType("int");
 
                     b.HasKey("Id");
 

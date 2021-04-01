@@ -5,6 +5,7 @@
 
     using MyRecipes.Data.Common.Repositories;
     using MyRecipes.Data.Models;
+    using MyRecipes.Services.Data.DTOs;
     using MyRecipes.Web.ViewModels.Home;
 
     public class ApplicationInfoService : IApplicationInfoService
@@ -26,9 +27,9 @@
             this.ingredientRepository = ingredientRepository;
         }
 
-        public IndexViewModel GetInfo()
+        public DtoIndexViewModel GetInfo()
         {
-            var homePageView = new IndexViewModel
+            var homePageView = new DtoIndexViewModel
             {
                 UsersCount = this.userRepository.All().Count(),
                 RecipesCount = this.recipeRepository.All().Count(),
