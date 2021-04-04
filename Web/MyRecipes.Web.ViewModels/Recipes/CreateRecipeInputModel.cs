@@ -1,5 +1,6 @@
 ﻿namespace MyRecipes.Web.ViewModels.Recipes
 {
+    using Microsoft.AspNetCore.Mvc.Rendering;
     using System;
     using System.Collections.Generic;
     using System.ComponentModel.DataAnnotations;
@@ -33,6 +34,6 @@
 
         public IEnumerable<RecipeIngredientInputModel> Ingredients { get; set; }
 
-        public IEnumerable<SelectListItem> MyProperty { get; set; }
+        public IEnumerable<SelectListItem> CategoriesItems { get; set; }
     }
 }

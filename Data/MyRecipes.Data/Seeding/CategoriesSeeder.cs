@@ -16,6 +16,7 @@
             await dbContext.Categories.AddAsync(new Models.Category { Name = "Тарт" });
             await dbContext.Categories.AddAsync(new Models.Category { Name = "Кекс" });
             await dbContext.Categories.AddAsync(new Models.Category { Name = "Печено свинско" });
+            await dbContext.Categories.AddAsync(new Models.Category { Name = "Манджи" });
 
             await dbContext.SaveChangesAsync();
         }
