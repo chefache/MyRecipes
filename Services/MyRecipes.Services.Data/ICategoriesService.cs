@@ -1,10 +1,9 @@
-﻿using Microsoft.AspNetCore.Mvc.Rendering;
-using System;
-using System.Collections.Generic;
-using System.Text;
-
-namespace MyRecipes.Services.Data
+﻿namespace MyRecipes.Services.Data
 {
+    using System.Collections.Generic;
+
+    using Microsoft.AspNetCore.Mvc.Rendering;
+
     public interface ICategoriesService
     {
         IEnumerable<SelectListItem> GetAll();

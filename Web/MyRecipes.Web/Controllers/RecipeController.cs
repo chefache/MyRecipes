@@ -1,8 +1,5 @@
 ﻿namespace MyRecipes.Web.Controllers
 {
-    using System;
-    using System.Collections.Generic;
-    using System.Linq;
     using System.Threading.Tasks;
 
     using Microsoft.AspNetCore.Mvc;
@@ -11,10 +8,14 @@
 
     public class RecipeController : Controller
     {
+        private readonly IRecipersService recipersService;
         private readonly ICategoriesService categoriesService;
 
-        public RecipeController(ICategoriesService categoriesService)
+        public RecipeController(
+            IRecipersService recipersService,
+            ICategoriesService categoriesService)
         {
+            this.recipersService = recipersService;
             this.categoriesService = categoriesService;
         }
 
@@ -27,7 +28,7 @@
         }
 
         [HttpPost]
-        public IActionResult Create(CreateRecipeInputModel inputModel)
+        public async Task<IActionResult> Create(CreateRecipeInputModel inputModel)
         {
             if (!this.ModelState.IsValid)
             {
@@ -35,7 +36,8 @@
                 return this.View(inputModel);
             }
 
-            // TODO: Create recipe using service method
+            await this.recipersService.CreateAsync(inputModel);
+
             // TODO:Redirect user to the page with the created recipe
             return this.Redirect("/");
         }

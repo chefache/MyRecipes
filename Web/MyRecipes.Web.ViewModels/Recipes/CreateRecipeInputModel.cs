@@ -1,9 +1,10 @@
 ﻿namespace MyRecipes.Web.ViewModels.Recipes
 {
-    using Microsoft.AspNetCore.Mvc.Rendering;
     using System;
     using System.Collections.Generic;
     using System.ComponentModel.DataAnnotations;
+
+    using Microsoft.AspNetCore.Mvc.Rendering;
 
     public class CreateRecipeInputModel
     {
@@ -30,8 +31,10 @@
         public int PortionsCount { get; set; }
 
         [Required]
+        [Display(Name = "Категория")]
         public int CategoryId { get; set; }
 
+        [Display(Name = "Съставки: ")]
         public IEnumerable<RecipeIngredientInputModel> Ingredients { get; set; }
 
         public IEnumerable<SelectListItem> CategoriesItems { get; set; }

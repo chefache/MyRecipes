@@ -42,6 +42,22 @@
             <select asp-for="CategoryId" class="form-control" asp-items="@Model.CategoriesItems"></select>
             <span asp-validation-for="CategoryId" class="text-danger"></span>
         </div>
-        <input type="submit" class="btn-info" />
+        <div id="IngredientsContainer">
+            <label asp-for="Ingredients"></label>
+            <a class="btn btn-info" onclick="AddMoreIngredients()">Добави</a>
+        </div>
+        <br />
+        <input type="submit" class="btn btn-info" />
     </form>
 </div>
+
+@section Scripts{ 
+<script>
+    var ingredientIndex = 0;
+    function AddMoreIngredients() {
+        $("#IngredientsContainer").
+            append("<div class='form-control'>Име: <input type='text' name='Ingredients[" + ingredientIndex + "].IngredientName' />Количество: <input type='text' name='Ingredients[" + ingredientIndex + "].IngredientQuantity' /></div>");
+        ingredientIndex++;
+    }
+</script>
+}

@@ -1,12 +1,12 @@
-﻿using Microsoft.AspNetCore.Mvc.Rendering;
-using MyRecipes.Data.Common.Repositories;
-using MyRecipes.Data.Models;
-using System.Linq;
-using System.Collections.Generic;
-using System.Text;
-
-namespace MyRecipes.Services.Data
+﻿namespace MyRecipes.Services.Data
 {
+    using System.Collections.Generic;
+    using System.Linq;
+
+    using Microsoft.AspNetCore.Mvc.Rendering;
+    using MyRecipes.Data.Common.Repositories;
+    using MyRecipes.Data.Models;
+
     public class CategoriesService : ICategoriesService
     {
         private readonly IDeletableEntityRepository<Category> categoryRepository;
@@ -20,7 +20,7 @@ namespace MyRecipes.Services.Data
         {
             var listItemCollection = new List<SelectListItem>();
 
-            var dbCategoriesWithId = this.categoryRepository.All().Select(x => new
+            var dbCategoriesWithId = this.categoryRepository.AllAsNoTracking().Select(x => new
             {
                 x.Id,
                 x.Name,
