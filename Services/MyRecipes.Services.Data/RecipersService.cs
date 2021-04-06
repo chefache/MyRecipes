@@ -35,7 +35,10 @@
 
             foreach (var inputIngredient in inputModel.Ingredients)
             {
-                var currentIngredient = this.ingredientsRepository.All().FirstOrDefault(x => x.Name == inputIngredient.IngredientName);
+                var currentIngredient = this.ingredientsRepository
+                    .All()
+                    .FirstOrDefault(x =>
+                    x.Name == inputIngredient.IngredientName);
 
                 if (currentIngredient == null)
                 {
