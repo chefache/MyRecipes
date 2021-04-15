@@ -39,7 +39,7 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "MyRecipes.Web.Tests", "Test
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "MyRecipes.Web.ViewModels", "Web\MyRecipes.Web.ViewModels\MyRecipes.Web.ViewModels.csproj", "{13B7AACB-9C85-4409-8D4B-95A67D0DFFF7}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "GotvachBgWebScraper", "GotvachBgWebScraper\GotvachBgWebScraper.csproj", "{5174AE80-B83B-4FC1-9D64-2EFBF136F42D}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ReceptiteBgWebScraper", "GotvachBgWebScraper\ReceptiteBgWebScraper.csproj", "{5174AE80-B83B-4FC1-9D64-2EFBF136F42D}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution

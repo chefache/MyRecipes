@@ -27,7 +27,7 @@
             {
                 Name = inputModel.Name,
                 CategoryId = inputModel.CategoryId,
-                CookingTime = TimeSpan.FromMinutes(inputModel.CookingTime),
+                Complicity = inputModel.Complicity,
                 PreparationTime = TimeSpan.FromMinutes(inputModel.PreparationTime),
                 Instructions = inputModel.Instructions,
                 PortionsCount = inputModel.PortionsCount,

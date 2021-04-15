@@ -19,7 +19,7 @@
 
         public TimeSpan PreparationTime { get; set; }
 
-        public TimeSpan CookingTime { get; set; }
+        public int Complicity { get; set; }
 
         public int PortionsCount { get; set; }
 

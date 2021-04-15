@@ -19,12 +19,12 @@
         public string Instructions { get; set; }
 
         [Range(2, 60 * 24)]
-        [Display(Name = "Време за подготовка в минути")]
+        [Display(Name = "Време за приготвяне")]
         public int PreparationTime { get; set; }
 
-        [Range(1, 60 * 12)]
-        [Display(Name = "Време за сготвяне в минути")]
-        public int CookingTime { get; set; }
+        [Range(1, 10)]
+        [Display(Name = "Сложност")]
+        public int Complicity { get; set; }
 
         [Range(1, 100)]
         [Display(Name = "Брой порции")]
