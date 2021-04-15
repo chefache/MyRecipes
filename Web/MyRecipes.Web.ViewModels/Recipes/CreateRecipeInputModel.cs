@@ -32,7 +32,7 @@
 
         [Required]
         [Display(Name = "Категория")]
-        public int CategoryId { get; set; }
+        public IEnumerable<RecipeCategoryInputModel> Categories { get; set; }
 
         [Display(Name = "Съставки: ")]
         public IEnumerable<RecipeIngredientInputModel> Ingredients { get; set; }

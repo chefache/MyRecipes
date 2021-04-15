@@ -14,7 +14,23 @@ namespace ReceptiteBgWebScraper
             var config = Configuration.Default.WithDefaultLoader();
             var context = BrowsingContext.New(config);
             var document = await context.OpenAsync(url);
-            var elements = document.QuerySelectorAll("li");
+
+            // Get Categorie name
+
+            // Get Recipe name
+
+            // Get Instructions
+
+            // Get Preparation time
+
+            // Get Cpmplicity
+
+            // Get Portions count
+
+            // Get Image url
+
+            // Get ingredients
+            var elements = document.QuerySelectorAll(".recepta_produkti > ul > li");
             foreach (var element in elements)
             {
                 Console.WriteLine(element.TextContent);
