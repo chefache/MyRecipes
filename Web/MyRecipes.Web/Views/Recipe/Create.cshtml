@@ -42,10 +42,18 @@
             <select asp-for="CategoryId" class="form-control" asp-items="@Model.CategoriesItems"></select>
             <span asp-validation-for="CategoryId" class="text-danger"></span>
         </div>*@
+        <div id="CategoriesContainer">
+            <label asp-for="Categories"></label>
+            <a class="btn btn-info" onclick="AddMoreCategories()">Добави</a>
+        </div>
+
+        <br />
+
         <div id="IngredientsContainer">
             <label asp-for="Ingredients"></label>
             <a class="btn btn-info" onclick="AddMoreIngredients()">Добави</a>
         </div>
+
         <br />
         <input type="submit" class="btn btn-info" />
     </form>
@@ -58,6 +66,14 @@
         $("#IngredientsContainer").
             append("<div class='form-control'>Име: <input type='text' name='Ingredients[" + ingredientIndex + "].IngredientName' />Количество: <input type='text' name='Ingredients[" + ingredientIndex + "].IngredientQuantity' /></div>");
         ingredientIndex++;
+    }
+</script>
+<script>
+    var categoryIndex = 0;
+    function AddMoreCategories() {
+        $("#CategoriesContainer").
+            append("<div class='form-control'>Име: <input type='text' name='Categories[" + categoryIndex + "].CategoryName' /></div>");
+        categoryIndex++;
     }
 </script>
 }

@@ -1,5 +1,7 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.Linq;
+using System.Text;
 using System.Threading.Tasks;
 using AngleSharp;
 using AngleSharp.Dom;
@@ -10,12 +12,12 @@ namespace ReceptiteBgWebScraper
     {
         static async Task Main(string[] args)
         {
-            var url = "https://receptite.com/%D1%80%D0%B5%D1%86%D0%B5%D0%BF%D1%82%D0%B0/%D0%BF%D0%B8%D0%BB%D0%B5%D1%88%D0%BA%D0%B0-%D1%81%D1%83%D0%BF%D0%B0-%D1%81-%D1%84%D0%B8%D0%B4%D0%B5";
+            var url = "https://matekitchen.com/recipes/zapekanka-s-brokoli-i-pasta/";
             var config = Configuration.Default.WithDefaultLoader();
             var context = BrowsingContext.New(config);
             var document = await context.OpenAsync(url);
 
-            // Get Categorie name
+            // Get Categories
 
             // Get Recipe name
 
@@ -30,11 +32,38 @@ namespace ReceptiteBgWebScraper
             // Get Image url
 
             // Get ingredients
-            var elements = document.QuerySelectorAll(".recepta_produkti > ul > li");
-            foreach (var element in elements)
+            var ingredientsNames = GetInnerHtml(document, ".recipe-product-name").ToList();
+            var ingredientsQuantity = GetInnerHtml(document, ".recipe-measurement").ToList();
+            var ingrtedientsMesureUnits = GetInnerHtml(document, ".recipe-unit").ToList();
+            var ingredientsNotes = GetInnerHtml(document, ".recipe-ingredient-note").ToList();
+
+            var result = new Dictionary<string, string>();
+
+            var counter = 0;
+            while (counter <= ingredientsNames.Count + 1)
             {
-                Console.WriteLine(element.TextContent);
+                if (ingredientsQuantity[counter] == null || ingrtedientsMesureUnits[counter] == null)
+                {
+                    result.Add(ingredientsNames[counter], ingredientsNotes[counter]);
+                }
+                result.Add(ingredientsNames[counter], ingredientsQuantity[counter] + ingrtedientsMesureUnits[counter]);
+                counter++;
             }
+            foreach (var item in result)
+            {
+                Console.WriteLine(item.Key + item.Value);
+            }
+        }
+
+        public static IEnumerable<string> GetInnerHtml(IDocument document, string className)
+        {
+            var items = document.QuerySelectorAll(className);
+            var list = new string[items.Length];
+            for (int i = 0; i < items.Length; i++)
+            {
+                list[i] = items[i].InnerHtml;
+            }
+            return list;
         }
     }
 }
