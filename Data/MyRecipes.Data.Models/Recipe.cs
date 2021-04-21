@@ -4,6 +4,7 @@
     using System.Collections.Generic;
 
     using MyRecipes.Data.Common.Models;
+    using MyRecipes.Data.Models.Enums;
 
     public class Recipe : BaseDeletableModel<int>
     {
@@ -20,7 +21,7 @@
 
         public TimeSpan PreparationTime { get; set; }
 
-        public int Complicity { get; set; }
+        public Complicity Complicity { get; set; }
 
         public int PortionsCount { get; set; }
 

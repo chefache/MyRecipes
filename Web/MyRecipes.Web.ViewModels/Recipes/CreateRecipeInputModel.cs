@@ -5,6 +5,7 @@
     using System.ComponentModel.DataAnnotations;
 
     using Microsoft.AspNetCore.Mvc.Rendering;
+    using MyRecipes.Data.Models.Enums;
 
     public class CreateRecipeInputModel
     {
@@ -22,9 +23,8 @@
         [Display(Name = "Време за приготвяне")]
         public int PreparationTime { get; set; }
 
-        [Range(1, 10)]
         [Display(Name = "Сложност")]
-        public int Complicity { get; set; }
+        public Complicity Complicity { get; set; }
 
         [Range(1, 100)]
         [Display(Name = "Брой порции")]

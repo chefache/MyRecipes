@@ -27,11 +27,15 @@
             <input asp-for="PreparationTime" class="form-control" />
             <span asp-validation-for="PreparationTime" class="text-danger"></span>
         </div>
+
         <div class="form-group">
-            <label asp-for="Complicity"></label>
-            <input asp-for="Complicity" class="form-control" />
+            <label asp-for="Complicity "></label>
+            <select asp-for="Complicity" class="form-control" asp-items="@Html.GetEnumSelectList
+                <MyRecipes.Data.Models.Enums.Complicity>()">
+            </select>
             <span asp-validation-for="Complicity" class="text-danger"></span>
         </div>
+
         <div class="form-group">
             <label asp-for="PortionsCount"></label>
             <input asp-for="PortionsCount" class="form-control" />
