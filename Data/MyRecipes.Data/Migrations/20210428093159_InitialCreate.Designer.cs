@@ -10,7 +10,7 @@ using MyRecipes.Data;
 namespace MyRecipes.Data.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    [Migration("20210401060856_InitialCreate")]
+    [Migration("20210428093159_InitialCreate")]
     partial class InitialCreate
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -345,8 +345,8 @@ namespace MyRecipes.Data.Migrations
                     b.Property<int>("CategoryId")
                         .HasColumnType("int");
 
-                    b.Property<TimeSpan>("CookingTime")
-                        .HasColumnType("time");
+                    b.Property<int>("Complicity")
+                        .HasColumnType("int");
 
                     b.Property<DateTime>("CreatedOn")
                         .HasColumnType("datetime2");

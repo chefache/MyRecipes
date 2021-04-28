@@ -8,11 +8,11 @@
     {
         public Category()
         {
-            this.RecipeCategories = new HashSet<RecipeCategory>();
+            this.Recipes = new HashSet<Recipe>();
         }
 
         public string Name { get; set; }
 
-        public virtual ICollection<RecipeCategory> RecipeCategories { get; set; }
+        public virtual ICollection<Recipe> Recipes { get; set; }
     }
 }

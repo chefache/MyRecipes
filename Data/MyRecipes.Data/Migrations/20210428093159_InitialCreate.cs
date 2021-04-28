@@ -1,8 +1,9 @@
-﻿using System;
-using Microsoft.EntityFrameworkCore.Migrations;
-
-namespace MyRecipes.Data.Migrations
+﻿namespace MyRecipes.Data.Migrations
 {
+    using System;
+
+    using Microsoft.EntityFrameworkCore.Migrations;
+
     public partial class InitialCreate : Migration
     {
         protected override void Up(MigrationBuilder migrationBuilder)
@@ -221,7 +222,7 @@ namespace MyRecipes.Data.Migrations
                     Name = table.Column<string>(type: "nvarchar(max)", nullable: true),
                     Instructions = table.Column<string>(type: "nvarchar(max)", nullable: true),
                     PreparationTime = table.Column<TimeSpan>(type: "time", nullable: false),
-                    CookingTime = table.Column<TimeSpan>(type: "time", nullable: false),
+                    Complicity = table.Column<int>(type: "int", nullable: false),
                     PortionsCount = table.Column<int>(type: "int", nullable: false),
                     AddedByUserId = table.Column<string>(type: "nvarchar(450)", nullable: true),
                     CategoryId = table.Column<int>(type: "int", nullable: false),

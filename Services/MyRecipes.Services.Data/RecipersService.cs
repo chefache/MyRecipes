@@ -12,16 +12,13 @@
     {
         private readonly IDeletableEntityRepository<Ingredient> ingredientsRepository;
         private readonly IDeletableEntityRepository<Recipe> recipeRepository;
-        private readonly IDeletableEntityRepository<Category> categoriesRepository;
 
         public RecipersService(
             IDeletableEntityRepository<Ingredient> ingredientsRepository,
-            IDeletableEntityRepository<Recipe> recipeRepository,
-            IDeletableEntityRepository<Category> categoriesRepository)
+            IDeletableEntityRepository<Recipe> recipeRepository)
         {
             this.ingredientsRepository = ingredientsRepository;
             this.recipeRepository = recipeRepository;
-            this.categoriesRepository = categoriesRepository;
         }
 
         public async Task CreateAsync(CreateRecipeInputModel inputModel)
@@ -57,30 +54,8 @@
                 });
             }
 
-            foreach (var inputCategory in inputModel.Categories)
-            {
-                var currentCategory = this.categoriesRepository
-                    .All()
-                    .FirstOrDefault(x =>
-                        x.Name == inputCategory.CategoryName);
-
-                if (currentCategory == null)
-                {
-                    currentCategory = new Category
-                    {
-                        Name = inputCategory.CategoryName,
-                    };
-                }
-
-                recipe.RecipeCategories.Add(new RecipeCategory
-                {
-                    Category = currentCategory,
-                });
-            }
-
             await this.recipeRepository.AddAsync(recipe);
             await this.ingredientsRepository.SaveChangesAsync();
-            await this.categoriesRepository.SaveChangesAsync();
         }
     }
 }

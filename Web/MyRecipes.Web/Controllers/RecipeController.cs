@@ -22,7 +22,7 @@
         public IActionResult Create()
         {
             var viewModel = new CreateRecipeInputModel();
-            //  viewModel.CategoriesItems = this.categoriesService.GetAll();
+            viewModel.CategoriesItems = this.categoriesService.GetAll();
 
             return this.View(viewModel);
         }
@@ -32,7 +32,7 @@
         {
             if (!this.ModelState.IsValid)
             {
-               // inputModel.CategoriesItems = this.categoriesService.GetAll();
+                inputModel.CategoriesItems = this.categoriesService.GetAll();
                 return this.View(inputModel);
             }
 

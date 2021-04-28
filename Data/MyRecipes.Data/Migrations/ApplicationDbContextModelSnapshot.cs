@@ -340,6 +340,9 @@ namespace MyRecipes.Data.Migrations
                     b.Property<string>("AddedByUserId")
                         .HasColumnType("nvarchar(450)");
 
+                    b.Property<int>("CategoryId")
+                        .HasColumnType("int");
+
                     b.Property<int>("Complicity")
                         .HasColumnType("int");
 
@@ -371,31 +374,11 @@ namespace MyRecipes.Data.Migrations
 
                     b.HasIndex("AddedByUserId");
 
+                    b.HasIndex("CategoryId");
+
                     b.HasIndex("IsDeleted");
 
                     b.ToTable("Recipes");
-                });
-
-            modelBuilder.Entity("MyRecipes.Data.Models.RecipeCategory", b =>
-                {
-                    b.Property<int>("Id")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("int")
-                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
-
-                    b.Property<int>("CategoryId")
-                        .HasColumnType("int");
-
-                    b.Property<int>("RecipeId")
-                        .HasColumnType("int");
-
-                    b.HasKey("Id");
-
-                    b.HasIndex("CategoryId");
-
-                    b.HasIndex("RecipeId");
-
-                    b.ToTable("RecipeCategory");
                 });
 
             modelBuilder.Entity("MyRecipes.Data.Models.RecipeIngredient", b =>
@@ -529,26 +512,15 @@ namespace MyRecipes.Data.Migrations
                         .WithMany()
                         .HasForeignKey("AddedByUserId");
 
-                    b.Navigation("AddedByUser");
-                });
-
-            modelBuilder.Entity("MyRecipes.Data.Models.RecipeCategory", b =>
-                {
                     b.HasOne("MyRecipes.Data.Models.Category", "Category")
-                        .WithMany("RecipeCategories")
+                        .WithMany("Recipes")
                         .HasForeignKey("CategoryId")
                         .OnDelete(DeleteBehavior.Restrict)
                         .IsRequired();
 
-                    b.HasOne("MyRecipes.Data.Models.Recipe", "Recipe")
-                        .WithMany("RecipeCategories")
-                        .HasForeignKey("RecipeId")
-                        .OnDelete(DeleteBehavior.Restrict)
-                        .IsRequired();
+                    b.Navigation("AddedByUser");
 
                     b.Navigation("Category");
-
-                    b.Navigation("Recipe");
                 });
 
             modelBuilder.Entity("MyRecipes.Data.Models.RecipeIngredient", b =>
@@ -581,7 +553,7 @@ namespace MyRecipes.Data.Migrations
 
             modelBuilder.Entity("MyRecipes.Data.Models.Category", b =>
                 {
-                    b.Navigation("RecipeCategories");
+                    b.Navigation("Recipes");
                 });
 
             modelBuilder.Entity("MyRecipes.Data.Models.Ingredient", b =>
@@ -592,8 +564,6 @@ namespace MyRecipes.Data.Migrations
             modelBuilder.Entity("MyRecipes.Data.Models.Recipe", b =>
                 {
                     b.Navigation("Images");
-
-                    b.Navigation("RecipeCategories");
 
                     b.Navigation("RecipeIngredients");
                 });
