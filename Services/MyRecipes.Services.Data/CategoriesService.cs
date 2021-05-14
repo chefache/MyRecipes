@@ -24,7 +24,8 @@
             {
                 x.Id,
                 x.Name,
-            }).ToList();
+            }).OrderBy(x => x.Name)
+            .ToList();
 
             foreach (var categoryWithId in dbCategoriesWithId)
             {

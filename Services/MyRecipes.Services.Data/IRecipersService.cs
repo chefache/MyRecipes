@@ -6,6 +6,6 @@
 
     public interface IRecipersService
     {
-       Task CreateAsync(CreateRecipeInputModel inputModel);
+       Task CreateAsync(CreateRecipeInputModel inputModel, string userId);
     }
 }
