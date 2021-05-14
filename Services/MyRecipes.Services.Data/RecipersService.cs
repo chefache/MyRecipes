@@ -1,11 +1,13 @@
 ﻿namespace MyRecipes.Services.Data
 {
     using System;
+    using System.Collections.Generic;
     using System.Linq;
     using System.Threading.Tasks;
 
     using MyRecipes.Data.Common.Repositories;
     using MyRecipes.Data.Models;
+    using MyRecipes.Services.Mapping;
     using MyRecipes.Web.ViewModels.Recipes;
 
     public class RecipersService : IRecipersService
@@ -58,6 +60,18 @@
 
             await this.recipeRepository.AddAsync(recipe);
             await this.ingredientsRepository.SaveChangesAsync();
+        }
+
+        public IEnumerable<T> GetAll<T>(int page, int itemsPerPage = 12)
+        {
+            var recipes = this.recipeRepository.AllAsNoTracking()
+                 .OrderByDescending(x => x.Id)
+                 .Skip((page - 1) * itemsPerPage)
+                 .Take(itemsPerPage)
+                 .To<T>()
+                 .ToList();
+
+            return recipes;
         }
     }
 }

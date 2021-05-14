@@ -57,7 +57,13 @@
         // id = pageNumber
         public IActionResult All(int id)
         {
-            return this.View();
+            var viewModel = new RecipesListViewModel
+            {
+                PageNumber = id,
+                Recipes = this.recipersService.GetAll<RecipeInListViewModel>(id, 12),
+            };
+
+            return this.View(viewModel);
         }
     }
 }
