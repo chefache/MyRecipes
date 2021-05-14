@@ -15,7 +15,8 @@
 
         public ApplicationUser AddedByUser { get; set; }
 
-        // The contents of the images are in the file sistem
+        public string RemoteImageUrl { get; set; }
+
         public string Extension { get; set; }
 
         public int RecipeId { get; set; }

@@ -26,6 +26,7 @@
             var recipe = new Recipe
             {
                 Name = inputModel.Name,
+                CategoryId = inputModel.CategoryId,
                 Complicity = inputModel.Complicity,
                 PreparationTime = TimeSpan.FromMinutes(inputModel.PreparationTime),
                 Instructions = inputModel.Instructions,
