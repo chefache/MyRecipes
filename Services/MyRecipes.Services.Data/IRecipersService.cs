@@ -7,8 +7,10 @@
 
     public interface IRecipersService
     {
-        Task CreateAsync(CreateRecipeInputModel inputModel, string userId);
+        Task CreateAsync(CreateRecipeInputModel inputModel, string userId, string imagePath);
 
         IEnumerable<T> GetAll<T>(int page, int itemsPerPage = 12);
+
+        int GetRecipesCount();
     }
 }

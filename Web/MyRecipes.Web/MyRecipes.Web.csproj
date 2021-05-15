@@ -12,6 +12,10 @@
   <ItemGroup>
     <AdditionalFiles Include="..\..\stylecop.json" />
   </ItemGroup>
+  <ItemGroup>
+    <None Include="wwwroot\images\recipes\4bfa046d-df27-43d1-a8a5-d5b6539a4bf4.jpg" />
+    <None Include="wwwroot\images\recipes\9b058699-d0ed-4811-97c2-c0a5349b837e.jpg" />
+  </ItemGroup>
 
   <ItemGroup>
     <PackageReference Include="Microsoft.AspNetCore.Identity.EntityFrameworkCore" Version="5.0.4" />

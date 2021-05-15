@@ -2,9 +2,11 @@
 {
     using System;
     using System.Collections.Generic;
+    using System.IO;
     using System.Linq;
     using System.Threading.Tasks;
 
+    using Microsoft.AspNetCore.Hosting;
     using MyRecipes.Data.Common.Repositories;
     using MyRecipes.Data.Models;
     using MyRecipes.Services.Mapping;
@@ -23,7 +25,7 @@
             this.recipeRepository = recipeRepository;
         }
 
-        public async Task CreateAsync(CreateRecipeInputModel inputModel, string userId)
+        public async Task CreateAsync(CreateRecipeInputModel inputModel, string userId, string imagePath)
         {
             var recipe = new Recipe
             {
@@ -58,6 +60,31 @@
                 });
             }
 
+            Directory.CreateDirectory($"{imagePath}/recipes/");
+
+            var allowedExtensions = new[]{"jpg", "png", "gif" };
+
+            foreach (var image in inputModel.Images)
+            {
+                var extension = Path.GetExtension(image.FileName).TrimStart('.');
+
+                if (!allowedExtensions.Any(x => extension.EndsWith(x)))
+                {
+                    throw new Exception($"Invalid image extension{extension}");
+                }
+
+                var dbImage = new Image
+                {
+                    AddedByUserId = userId,
+                    Extension = extension,
+                };
+                recipe.Images.Add(dbImage);
+
+                var phisicalPath = $"{imagePath}/recipes/{dbImage.Id}.{extension}";
+                using Stream filestream = new FileStream(phisicalPath, FileMode.Create);
+                await image.CopyToAsync(filestream);
+            }
+
             await this.recipeRepository.AddAsync(recipe);
             await this.ingredientsRepository.SaveChangesAsync();
         }
@@ -72,6 +99,11 @@
                  .ToList();
 
             return recipes;
+        }
+
+        public int GetRecipesCount()
+        {
+            return this.recipeRepository.All().Count();
         }
     }
 }
