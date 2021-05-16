@@ -10,7 +10,7 @@
     {
         public Recipe()
         {
-            this.RecipeIngredients = new HashSet<RecipeIngredient>();
+            this.Ingredients = new HashSet<RecipeIngredient>();
             this.Images = new HashSet<Image>();
         }
 
@@ -28,7 +28,7 @@
 
         public virtual ApplicationUser AddedByUser { get; set; }
 
-        public virtual ICollection<RecipeIngredient> RecipeIngredients { get; set; }
+        public virtual ICollection<RecipeIngredient> Ingredients { get; set; }
 
         public int CategoryId { get; set; }
 

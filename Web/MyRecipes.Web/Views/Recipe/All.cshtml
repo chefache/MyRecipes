@@ -7,7 +7,7 @@
 
 <hr />
 
-<div class="row">
+<div class="row card-group card-header-pills">
     @foreach (var recipe in Model.Recipes)
     {
         <div class="card" style="width: 20rem;">
@@ -15,21 +15,9 @@
             <div class="card-body">
                 <h5 class="card-title">@recipe.Name</h5>
                 <p class="card-text">@recipe.CategoryName</p>
-                <a href="#" class="btn btn-primary">Към рецептата</a>
+                <a asp-action="ById" asp-route-id="@recipe.Id" class="btn btn-primary">Към рецептата</a>
             </div>
         </div>
-
-
-
-        @*<div class="media col-md-3">
-                <div class="flex-shrink-0">
-                    <img src="@recipe.ImageUrl" alt="...">
-                </div>
-                <div class="flex-grow-1 ms-3">
-                    <h5 class="mt-0">@recipe.Name</h5>
-                    @recipe.CategoryName
-                </div>
-            </div>*@
     }
 </div>
 
