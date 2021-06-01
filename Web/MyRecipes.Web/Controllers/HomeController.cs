@@ -16,16 +16,23 @@
     {
         private readonly IApplicationInfoService infoService;
         private readonly UserManager<ApplicationUser> userManager;
+        private readonly IRecipersService recipersService;
 
-        public HomeController(IApplicationInfoService infoService, UserManager<ApplicationUser> userManager)
+        public HomeController(
+            IApplicationInfoService infoService,
+            UserManager<ApplicationUser> userManager,
+            IRecipersService recipersService)
         {
             this.infoService = infoService;
             this.userManager = userManager;
+            this.recipersService = recipersService;
         }
 
         public IActionResult Index()
         {
             var viewModel = this.infoService.GetInfo();
+            viewModel.RandomRecipes = this.recipersService
+                .GetRandom<IndexPageRecipeViewModel>(10);
 
             return this.View(viewModel);
         }

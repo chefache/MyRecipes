@@ -6,4 +6,27 @@
     this.ViewData["Title"] = "Home Page";
 }
 
-<partial name="_SiteInfoPartialView"/>
+<div class="text-center row">
+    <div class="col-md-7">
+        <div class="row">
+            @foreach (var recipe in this.Model.RandomRecipes)
+            {
+                <div class="card col-md-4" style="width: 18rem;">
+                    <img src="@recipe.ImageUrl" class="card-img-top" alt="MyRecipes">
+                    <div class="card-body">
+                        <h5 class="@recipe.Name"></h5>
+                        <p class="@recipe.CategoryName"></p>
+                        <a asp-controller="Recipe" asp-action="ById" asp-route-id="@recipe.Id" class="btn btn-primary">Към рецептата</a>
+                    </div>
+                </div>
+            }
+        </div>
+    </div>
+
+    <div class="col-md-5">
+        <partial name="_SiteInfoPartialView" />
+    </div>
+
+</div>
+
+
