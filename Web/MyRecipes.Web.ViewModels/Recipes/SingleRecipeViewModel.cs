@@ -39,13 +39,13 @@
         public void CreateMappings(IProfileExpression configuration)
         {
             configuration.CreateMap<Recipe, SingleRecipeViewModel>()
-            .ForMember(x => x.AverageVote, opt =>
-              opt.MapFrom(x => x.Votes.Count() == 0 ? 0 : x.Votes.Average(v => v.Value)))
-            .ForMember(x => x.ImageUrl, opt =>
-              opt.MapFrom(x =>
-            x.Images.FirstOrDefault().RemoteImageUrl != null ?
-            x.Images.FirstOrDefault().RemoteImageUrl :
-            "/images/recipes/" + x.Images.FirstOrDefault().Id + "." + x.Images.FirstOrDefault().Extension));
+              .ForMember(x => x.AverageVote, opt =>
+                opt.MapFrom(x => x.Votes.Count() == 0 ? 0 : x.Votes.Average(v => v.Value)))
+              .ForMember(x => x.ImageUrl, opt =>
+                opt.MapFrom(x =>
+                  x.Images.FirstOrDefault().RemoteImageUrl != null ?
+                  x.Images.FirstOrDefault().RemoteImageUrl :
+                 "/images/recipes/" + x.Images.FirstOrDefault().Id + "." + x.Images.FirstOrDefault().Extension));
         }
     }
 }

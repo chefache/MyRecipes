@@ -67,6 +67,30 @@
             return this.Redirect("/");
         }
 
+        [Authorize]
+        public IActionResult Edit(int id)
+        {
+            var inputModel = this.recipersService.GetById<EditRecipeInputModel>(id);
+            inputModel.Id = id;
+            inputModel.CategoriesItems = this.categoriesService.GetAll();
+            return this.View(inputModel);
+        }
+
+        [HttpPost]
+        [Authorize]
+        public async Task<IActionResult> Edit(int id, EditRecipeInputModel input)
+        {
+            if (!this.ModelState.IsValid)
+            {
+                input.Id = id;
+                input.CategoriesItems = this.categoriesService.GetAll();
+                return this.View(input);
+            }
+
+            await this.recipersService.UpdateAsync(id, input);
+            return this.RedirectToAction(nameof(this.ById), new { id });
+        }
+
         // id = pageNumber
         public IActionResult All(int id = 1)
         {

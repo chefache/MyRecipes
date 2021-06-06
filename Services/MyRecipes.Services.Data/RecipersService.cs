@@ -123,5 +123,18 @@
         {
             return this.recipeRepository.All().Count();
         }
+
+        public async Task UpdateAsync(int id, EditRecipeInputModel input)
+        {
+            var recipes = this.recipeRepository.All()
+                .FirstOrDefault(x => x.Id == id);
+            recipes.Name = input.Name;
+            recipes.Instructions = input.Instructions;
+            recipes.PortionsCount = input.PortionsCount;
+            recipes.Complicity = input.Complicity;
+            recipes.PreparationTime = TimeSpan.FromMinutes(input.PreparationTime);
+            recipes.CategoryId = input.CategoryId;
+            await this.recipeRepository.SaveChangesAsync();
+        }
     }
 }
