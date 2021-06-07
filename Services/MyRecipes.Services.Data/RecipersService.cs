@@ -62,7 +62,7 @@
 
             Directory.CreateDirectory($"{imagePath}/recipes/");
 
-            var allowedExtensions = new[]{"jpg", "png", "gif" };
+            var allowedExtensions = new[] { "jpg", "png", "gif" };
 
             foreach (var image in inputModel.Images)
             {
@@ -109,6 +109,17 @@
                 .FirstOrDefault();
 
             return recipe;
+        }
+
+        public IEnumerable<T> GetByIngredients<T>(IEnumerable<int> ingredintIds)
+        {
+            var query = this.recipeRepository.All().AsQueryable();
+            foreach (var ingredientId in ingredintIds)
+            {
+                query = query.Where(x => x.Ingredients.Any(i => i.Id == ingredientId));
+            }
+
+            return query.To<T>().ToList();
         }
 
         public IEnumerable<T> GetRandom<T>(int count)

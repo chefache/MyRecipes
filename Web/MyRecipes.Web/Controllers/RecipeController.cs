@@ -80,6 +80,7 @@
         [Authorize]
         public async Task<IActionResult> Edit(int id, EditRecipeInputModel input)
         {
+            // var userId = this.User.FindFirst(ClaimTypes.NameIdentifier).Value;
             if (!this.ModelState.IsValid)
             {
                 input.Id = id;

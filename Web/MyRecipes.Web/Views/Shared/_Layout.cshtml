@@ -29,6 +29,9 @@
                             <li class="nav-item">
                                 <a class="nav-link text-dark" asp-area="" asp-controller="Recipe" asp-action="All">Всички рецепти</a>
                             </li>
+                            <li class="nav-item">
+                                <a class="nav-link text-dark" asp-area="" asp-controller="SearchRecipes" asp-action="Index">Търси</a>
+                            </li>
                             @if (this.User.Identity.IsAuthenticated)
                             {
                                 <li class="nav-item">
