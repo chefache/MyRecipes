@@ -68,6 +68,12 @@
                     <a asp-controller="Recipe" asp-action="Edit" asp-route-id="@Model.Id" class="btn btn-danger">Редактирай</a>
                 </li>
 
+                <li class="single-meta">
+                    <form asp-action="Delete" id="deleteForm" asp-route-id="@Model.Id">
+                    </form>
+                    <button class="btn btn-danger" data-toggle="modal" data-target="#deleteModal">Изтрий</button>
+                </li>
+
             </ul>
         </div>
     </div>
@@ -177,3 +183,21 @@
         });
     </script>
 }
+
+<div class="modal" tabindex="-1" id="deleteModal">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title">Изтрий</h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Откажи"></button>
+            </div>
+            <div class="modal-body">
+                <p>Потвърждавате ли?</p>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                <button type="button" class="btn btn-primary" onclick="deleteForm.submit()">Запази промените</button>
+            </div>
+        </div>
+    </div>
+</div>

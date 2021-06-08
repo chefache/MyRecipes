@@ -1,6 +1,5 @@
 ﻿namespace MyRecipes.Web.Controllers
 {
-
     using Microsoft.AspNetCore.Mvc;
     using MyRecipes.Services.Data;
     using MyRecipes.Web.ViewModels.Recipes;

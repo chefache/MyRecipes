@@ -118,5 +118,12 @@
             var recipe = this.recipersService.GetById<SingleRecipeViewModel>(id);
             return this.View(recipe);
         }
+
+        [HttpPost]
+        public async Task<IActionResult> Delete(int id)
+        {
+            await this.recipersService.DeleteAsync(id);
+            return this.RedirectToAction(nameof(this.All));
+        }
     }
 }
