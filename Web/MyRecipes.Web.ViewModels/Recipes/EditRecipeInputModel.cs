@@ -8,6 +8,8 @@
     {
         public int Id { get; set; }
 
+        public string AddedByUserId { get; set; }
+
         public void CreateMappings(IProfileExpression configuration)
         {
             configuration.CreateMap<Recipe, EditRecipeInputModel>()

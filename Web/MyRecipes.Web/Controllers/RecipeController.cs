@@ -80,7 +80,9 @@
         [Authorize]
         public async Task<IActionResult> Edit(int id, EditRecipeInputModel input)
         {
-            // var userId = this.User.FindFirst(ClaimTypes.NameIdentifier).Value;
+            var userId = this.User.FindFirst(ClaimTypes.NameIdentifier).Value;
+            var recipeUserId = this.recipersService.GetById<EditRecipeInputModel>(id).AddedByUserId;
+
             if (!this.ModelState.IsValid)
             {
                 input.Id = id;
@@ -88,8 +90,13 @@
                 return this.View(input);
             }
 
-            await this.recipersService.UpdateAsync(id, input);
-            return this.RedirectToAction(nameof(this.ById), new { id });
+            if (userId == recipeUserId)
+            {
+                await this.recipersService.UpdateAsync(id, input);
+                return this.RedirectToAction(nameof(this.ById), new { id });
+            }
+
+            return this.Unauthorized("Трябва да си създател на рецептата за да я редактираш!");
         }
 
         // id = pageNumber
@@ -122,8 +129,15 @@
         [HttpPost]
         public async Task<IActionResult> Delete(int id)
         {
-            await this.recipersService.DeleteAsync(id);
-            return this.RedirectToAction(nameof(this.All));
+            var userId = this.User.FindFirst(ClaimTypes.NameIdentifier).Value;
+            var recipeUserId = this.recipersService.GetById<EditRecipeInputModel>(id).AddedByUserId;
+            if (userId == recipeUserId)
+            {
+                await this.recipersService.DeleteAsync(id);
+                return this.RedirectToAction(nameof(this.All));
+            }
+
+            return this.Unauthorized("Трябва да си създател на рецептата за да я изтриваш!");
         }
     }
 }

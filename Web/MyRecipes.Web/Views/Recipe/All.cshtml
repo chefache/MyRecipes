@@ -8,15 +8,15 @@
 <hr />
 
 <div class="text-center row">
-    <div class="col-md-7">
+    <div class="col-md-8">
         <div class="row">
             @foreach (var recipe in this.Model.Recipes)
             {
-                <div class="card col-md-4" style="width: 18rem;">
-                    <img src="@recipe.ImageUrl" class="card-img-top" alt="MyRecipes">
+                <div class="card" style="width: 18rem;">
+                    <img src="@recipe.ImageUrl" class="card-img-top" alt="...">
                     <div class="card-body">
-                        <h5 class="@recipe.Name"></h5>
-                        <p class="@recipe.CategoryName"></p>
+                        <h5 class="card-title">@recipe.Name</h5>
+                        <p class="card-text">@recipe.CategoryName</p>
                         <a asp-controller="Recipe" asp-action="ById" asp-route-id="@recipe.Id" class="btn btn-primary">Към рецептата</a>
                     </div>
                 </div>
